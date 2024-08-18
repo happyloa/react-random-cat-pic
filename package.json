@@ -1,7 +1,7 @@
 {
   "name": "random-cat-pic",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/RandomCatPic.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib"
