@@ -1,12 +1,14 @@
 {
   "name": "random-cat-pic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/RandomCatPic.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib"
   },
-  "keywords": ["cat"],
+  "keywords": [
+    "cat"
+  ],
   "author": "Aaron",
   "license": "ISC",
   "description": "A simple React component that will display a picture of a cat.",
