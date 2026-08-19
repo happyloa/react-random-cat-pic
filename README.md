@@ -1,73 +1,81 @@
-![](https://images.unsplash.com/photo-1586042091284-bd35c8c1d917?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==)
+# random-cat-pic
 
-# Random Cat Pic
-
-`random-cat-pic` 是一個簡單的 React 元件，用於顯示來自 [Cataas](https://cataas.com/) 的隨機貓咪照片。這個元件非常適合用於 Next.js 和其他 React 專案中。
+一個輕量的 React 圖片元件，會透過 [CATAAS](https://cataas.com/) 顯示隨機貓咪圖片。
 
 ## 安裝
 
-你可以使用 npm 安裝這個套件：
-
-```bash
+~~~bash
 npm install random-cat-pic
-```
+~~~
 
-或者使用 Yarn：
+React 是這個套件的 peer dependency。一般 React 或 Next.js 專案都已經有它，
+不需要讓套件再安裝第二份 React。
 
-```bash
-yarn add random-cat-pic
-```
+## 快速開始
 
-## 使用方法
+~~~tsx
+import RandomCatPic from "random-cat-pic";
 
-在你的 React 或 Next.js 項目中引入 `RandomCatPic` 元件並使用：
-
-```JavaScript
-import React from 'react';
-import RandomCatPic from 'random-cat-pic';
-
-const HomePage = () => {
+export function CatCard() {
   return (
-    <div>
-      <h1>歡迎來到我的網站！</h1>
-      <RandomCatPic />
-    </div>
+    <RandomCatPic
+      alt="一隻隨機出現的貓"
+      className="cat-photo"
+      height={240}
+      loading="lazy"
+      width={320}
+    />
   );
-};
+}
+~~~
 
-export default HomePage;
-```
+元件會固定使用 https://cataas.com/cat 作為圖片來源，因此每次請求都會取得隨機貓咪。
+你可以直接傳入原生 img 屬性來控制大小、樣式、載入方式與事件處理器，也可以透過 ref
+存取底層的 HTMLImageElement。
 
-這樣你就可以在你的網頁上顯示一張隨機的貓照片。
+## 屬性
 
-## 元件屬性
+| 屬性 | 型別 | 預設值 | 說明 |
+| --- | --- | --- | --- |
+| alt | string | Random Cat | 圖片的替代文字，建議依頁面語意自訂。 |
+| 其他 img 屬性 | 原生圖片屬性 | 無 | 例如 className、loading、width、height 與事件處理器。 |
 
-`RandomCatPic` 元件目前沒有接受任何屬性。未來版本可能會增加更多自訂屬性和功能。
+為了維持「隨機貓咪」元件的用途，src 不提供覆寫。
 
-## 開發
+## 相容性
 
-如果你想對此元件進行開發或修改，你可以複製這個儲存庫並在本地進行開發：
+- React 18 或 React 19
+- 支援 ESM 與 CommonJS
+- 內含 TypeScript 型別宣告
 
-```bash
-git clone https://github.com/your-repository/random-cat-pic.git
-cd random-cat-pic
-npm install
-```
+## 從 1.x 升級
 
-運行以下指令來打包你的更改：
+預設匯入方式維持不變：
 
-```bash
-npm run build
-```
+~~~tsx
+import RandomCatPic from "random-cat-pic";
+~~~
 
-## 發佈
+2.0 將 React 改為 peer dependency，並將內部打包檔改放在 dist。
+請一律從套件根目錄匯入，不要依賴舊版的 lib 路徑。
 
-確保你已經打包好你的元件並測試無誤後，你可以將你的更改推送到 npm：
+## 本機開發
 
-```bash
-npm publish
-```
+~~~bash
+npm ci
+npm run verify
+npm pack --dry-run
+~~~
 
-## 貢獻
+verify 會執行型別檢查、測試與套件打包。執行 npm pack 或 npm publish 前也會自動打包。
 
-歡迎提交問題（issues）或拉取請求（pull requests）來改善這個項目。如果你有任何建議或改進意見，請隨時聯繫我。
+## 發佈新版
+
+1. 更新 package.json 的 version 與 CHANGELOG.md。
+2. 執行 npm run verify 與 npm pack --dry-run。
+3. 以擁有 random-cat-pic 發佈權限的 npm 帳號登入。
+4. 執行 npm publish。
+
+## 授權
+
+[ISC](./LICENSE)

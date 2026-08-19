@@ -1,25 +1,72 @@
 {
   "name": "random-cat-pic",
-  "version": "1.0.2",
-  "main": "lib/RandomCatPic.js",
+  "version": "2.0.0",
+  "description": "A tiny React component that displays a random cat from CATAAS.",
+  "license": "ISC",
+  "author": "Aaron",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happyloa/react-random-cat-pic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/happyloa/react-random-cat-pic/issues"
+  },
+  "homepage": "https://github.com/happyloa/react-random-cat-pic#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "overrides": {
+    "esbuild": "0.28.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir lib"
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run typecheck && npm test"
   },
   "keywords": [
-    "cat"
+    "cat",
+    "random-cat",
+    "react",
+    "react-component",
+    "cataas"
   ],
-  "author": "Aaron",
-  "license": "ISC",
-  "description": "A simple React component that will display a picture of a cat.",
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
-    "@babel/preset-react": "^7.24.7"
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
   }
 }
